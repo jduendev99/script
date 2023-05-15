@@ -1,0 +1,31 @@
+name: Download and Upload Data
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  process-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Git config
+        run: |
+          git config --global user.name "jduendev99"
+          git config --global user.email "jduendev99@gmail.com"
+
+      - name: Download data
+        run: |
+          # Comandos para descargar los datos, por ejemplo:
+          curl -O https://github.com/wep4you/logstash/blob/master/Dockerfile
+
+      - name: Upload data
+        run: |
+          # Comandos para subir los datos al otro repositorio, por ejemplo:
+          git add .
+          git commit -m "Upload data"
+          git push origin main
